@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function MinutesToHours() {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      function onChange(event) {
+        setAmount(event.target.value);
+      }
+      const reset = () => {
+        setAmount(0);
+      };
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
+      let minutes;
+      let hours;
+      if (flipped) {
+        minutes = amount * 60;
+        hours = amount;
+      } else {
+        minutes = amount;
+        hours = Math.round(amount / 60);
+      }
+      return (
+        <div>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              type="number"
+              placeholder="Minutes"
+              id="minutes"
+              value={minutes}
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              type="number"
+              placeholder="Hours"
+              id="hours"
+              value={hours}
+              onChange={onChange}
+              disabled={!flipped}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "unFlip" : "Flip"}</button>
+        </div>
+      );
+    }
+    function KMToMiles() {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      function onChange(event) {
+        setAmount(event.target.value);
+      }
+      const reset = () => {
+        setAmount(0);
+      };
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
+      let KMs;
+      let miles;
+      if (flipped) {
+        KMs = (amount * 1.609).toFixed(3);
+        miles = amount;
+      } else {
+        KMs = amount;
+        miles = (amount / 1.609).toFixed(3);
+      }
+      return (
+        <div>
+          <div>
+            <label htmlFor="KMs">Kilometers</label>
+            <input
+              type="number"
+              placeholder="Kilometers"
+              id="KMs"
+              value={KMs}
+              onChange={onChange}
+              disabled={flipped}
+            />
+          </div>
+          <div>
+            <label htmlFor="miles">Miles</label>
+            <input
+              type="number"
+              placeholder="Miles"
+              id="miles"
+              value={miles}
+              onChange={onChange}
+              disabled={!flipped}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>{flipped ? "unFlip" : "Flip"}</button>
+        </div>
+      );
+    }
+    function App() {
+      const [selected, setSelected] = React.useState("xx");
+      const onChange = (event) => {
+        setSelected(event.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select onChange={onChange}>
+            <option value="xx">Select your units</option>
+            <option value="minutes">Minutes & Hours</option>
+            <option value="kms">KMs & Miles</option>
+          </select>
+          <hr />
+          {selected === "xx" ? "Please select your units" : null}
+          {selected === "minutes" ? <MinutesToHours /> : null}
+          {selected === "kms" ? <KMToMiles /> : null}
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

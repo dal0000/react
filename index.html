@@ -13,72 +13,24 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
-      function onChange(event) {
-        setAmount(event.target.value);
-      }
-      const reset = () => {
-        setAmount(0);
-      };
-      const onFlip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
-      let minutes;
-      let hours;
-      if (flipped) {
-        minutes = amount * 60;
-        hours = amount;
-      } else {
-        minutes = amount;
-        hours = Math.round(amount / 60);
-      }
+    function Btn() {
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              type="number"
-              placeholder="Minutes"
-              id="minutes"
-              value={minutes}
-              onChange={onChange}
-              disabled={flipped}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              type="number"
-              placeholder="Hours"
-              id="hours"
-              value={hours}
-              onChange={onChange}
-              disabled={!flipped}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "orange",
+            color: "white",
+            border: 0,
+            "border-radius": 5,
+          }}
+        >
+          btn
+        </button>
       );
     }
     function App() {
-      const [selected, setSelected] = React.useState("minutes");
-      const onChange = (event) => {
-        setSelected(event.target.value);
-      };
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select onChange={onChange}>
-            <option value="minutes">Minutes & Hours</option>
-            <option value="kms">KMs & Miles</option>
-          </select>
-          <hr />
-          {selected === "minutes" ? <MinutesToHours /> : null}
-          {selected === "kms" ? "kms to miles" : null}
+          <Btn />
         </div>
       );
     }
