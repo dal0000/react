@@ -20,12 +20,13 @@ function Home() {
   return (
     <div>
       {loading ? (
-        <h3>loading....</h3>
+        <h3>Loading....</h3>
       ) : (
         <div>
           {movies.map((movie) => (
             <Movie
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               coverImg={movie.medium_cover_image}
               summary={movie.summary}
@@ -39,3 +40,5 @@ function Home() {
 }
 
 export default Home;
+
+// https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year
