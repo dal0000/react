@@ -26,6 +26,10 @@ function Detail() {
             <img src={movie.large_cover_image} alt="" />
           </div>
           <Link to={movie.url}>HomePage</Link>
+          <div>
+            <Link to={"/"}>Back</Link>
+          </div>
+
           <p>{movie.description_full}</p>
         </div>
       )}
