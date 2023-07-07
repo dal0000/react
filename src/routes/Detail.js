@@ -27,7 +27,7 @@ function Detail() {
           </div>
           <Link to={movie.url}>HomePage</Link>
           <div>
-            <Link to={"/"}>Back</Link>
+            <Link to={"/react"}>Back</Link>
           </div>
 
           <p>{movie.description_full}</p>
